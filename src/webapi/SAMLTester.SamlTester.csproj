@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>SAMLTester.Webapi</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ComponentSpace.Saml2" Version="3.3.0" />
+    <PackageReference Include="ComponentSpace.Saml2.Licensed" Version="3.4.0" />
   </ItemGroup>
 
 </Project>

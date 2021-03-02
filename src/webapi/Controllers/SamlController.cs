@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SAMLTester.Models;
 
-namespace SAMLTester.Controllers
+namespace SAMLTester.Webapi.Controllers
 {
     [ApiController]
     [Route("api")]
@@ -48,7 +48,7 @@ namespace SAMLTester.Controllers
             var samlConfiguration = _samlConfigurations.Configurations.FirstOrDefault();
 
             var cert = samlConfiguration.LocalIdentityProviderConfiguration.LocalCertificates;
-            samlConfiguration.LocalIdentityProviderConfiguration = new LocalIdentityProviderConfiguration()
+            samlConfiguration.LocalIdentityProviderConfiguration = new LocalIdentityProviderConfiguration
                 {
                     Name = input.Issuer,
                     Description = "Example Identity Provider 2",
@@ -56,7 +56,7 @@ namespace SAMLTester.Controllers
                     LocalCertificates = cert
                 };
 
-            samlConfiguration.PartnerServiceProviderConfigurations.Add(new PartnerServiceProviderConfiguration()
+            samlConfiguration.PartnerServiceProviderConfigurations.Add(new PartnerServiceProviderConfiguration
             {
                 Name = input.Issuer,
                 Description = "Example Service Provider",
