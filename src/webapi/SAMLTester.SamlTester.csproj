@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="certificates" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="ComponentSpace.Saml2.Licensed" Version="3.4.0" />
   </ItemGroup>
 
