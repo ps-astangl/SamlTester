@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{885D4BC2-16D1-4163-A4E0-331FC158F33A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAMLTester.SamlTester", "src\webapi\SAMLTester.SamlTester.csproj", "{6BF9F3DC-2BAD-4450-B4CB-6DB47FBDA1A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAMLTester.SamlTester", "src\SAMLTester\SAMLTester.SamlTester.csproj", "{6BF9F3DC-2BAD-4450-B4CB-6DB47FBDA1A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

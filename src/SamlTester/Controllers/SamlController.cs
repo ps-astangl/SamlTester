@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SAMLTester.Models;
 
-namespace SAMLTester.Webapi.Controllers
+namespace SAMLTester.Controllers
 {
     [ApiController]
     [Route("api")]
@@ -37,10 +37,11 @@ namespace SAMLTester.Webapi.Controllers
                     attr => new SamlAttribute(attr.Name, attr.NameFormat, attr.FriendlyName, attr.Value)
                 ).ToList();
 
-            await _samlIdentityProvider.InitiateSsoAsync(
+            var identityTask=  _samlIdentityProvider.InitiateSsoAsync(
                 partnerName: input.Issuer,
                 attributes: attributes
             );
+            await identityTask;
         }
 
         private void UpdateSamlConfigs(SamlInput input)
