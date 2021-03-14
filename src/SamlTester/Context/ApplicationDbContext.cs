@@ -96,7 +96,7 @@ namespace SAMLTester.Context
                 .HasDefaultValueSql(ApplicationDbContext.GetDateSql);
 
             builder
-                .HasMany(x => (IEnumerable<PartnerCertificate>) x.PartnerCertificates)
+                .HasMany(x => x.PartnerCertificates)
                 .WithOne(x => x.PartnerServiceProviderConfiguration)
                 .HasForeignKey(x => x.PartnerServiceProviderConfigurationId);
         }
