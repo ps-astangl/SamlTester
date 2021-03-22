@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAMLTester.SamlTester", "src\SAMLTester\SAMLTester.SamlTester.csproj", "{6BF9F3DC-2BAD-4450-B4CB-6DB47FBDA1A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAMLTester", "src\SAMLTester\SAMLTester.csproj", "{6BF9F3DC-2BAD-4450-B4CB-6DB47FBDA1A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,8 +42,5 @@ Global
 		{6BF9F3DC-2BAD-4450-B4CB-6DB47FBDA1A3}.Release|x64.Build.0 = Release|Any CPU
 		{6BF9F3DC-2BAD-4450-B4CB-6DB47FBDA1A3}.Release|x86.ActiveCfg = Release|Any CPU
 		{6BF9F3DC-2BAD-4450-B4CB-6DB47FBDA1A3}.Release|x86.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{6BF9F3DC-2BAD-4450-B4CB-6DB47FBDA1A3} = {885D4BC2-16D1-4163-A4E0-331FC158F33A}
 	EndGlobalSection
 EndGlobal
