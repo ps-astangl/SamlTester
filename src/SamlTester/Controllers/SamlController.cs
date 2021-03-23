@@ -31,7 +31,7 @@ namespace SAMLTester.Controllers
         [HttpPost]
         public async Task SignSaml([FromBody] SamlInput input)
         {
-            UpdateSamlConfigs(input);
+            // UpdateSamlConfigs(input);
 
             List<SamlAttribute> attributes = input.Attributes.Select(
                     attr => new SamlAttribute(attr.Name, attr.NameFormat, attr.FriendlyName, attr.Value)
@@ -44,26 +44,26 @@ namespace SAMLTester.Controllers
             await identityTask;
         }
 
-        private void UpdateSamlConfigs(SamlInput input)
-        {
-            var samlConfiguration = _samlConfigurations.Configurations.FirstOrDefault();
-
-            var cert = samlConfiguration.LocalIdentityProviderConfiguration.LocalCertificates;
-            samlConfiguration.LocalIdentityProviderConfiguration = new LocalIdentityProviderConfiguration
-                {
-                    Name = input.Issuer,
-                    Description = "Example Identity Provider 2",
-                    SingleSignOnServiceUrl = input.TargetEndpoint,
-                    LocalCertificates = cert
-                };
-
-            samlConfiguration.PartnerServiceProviderConfigurations.Add(new PartnerServiceProviderConfiguration
-            {
-                Name = input.Issuer,
-                Description = "Example Service Provider",
-                SingleLogoutServiceUrl = input.TargetEndpoint,
-                LocalCertificates = cert
-            });
-        }
+        // private void UpdateSamlConfigs(SamlInput input)
+        // {
+        //     var samlConfiguration = _samlConfigurations.Configurations.FirstOrDefault();
+        //
+        //     var cert = samlConfiguration.LocalIdentityProviderConfiguration.LocalCertificates;
+        //     samlConfiguration.LocalIdentityProviderConfiguration = new LocalIdentityProviderConfiguration
+        //         {
+        //             Name = input.Issuer,
+        //             Description = "Example Identity Provider 2",
+        //             SingleSignOnServiceUrl = input.TargetEndpoint,
+        //             LocalCertificates = cert
+        //         };
+        //
+        //     samlConfiguration.PartnerServiceProviderConfigurations.Add(new PartnerServiceProviderConfiguration
+        //     {
+        //         Name = input.Issuer,
+        //         Description = "Example Service Provider",
+        //         SingleLogoutServiceUrl = input.TargetEndpoint,
+        //         LocalCertificates = cert
+        //     });
+        // }
     }
 }

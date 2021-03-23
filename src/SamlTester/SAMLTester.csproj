@@ -29,7 +29,10 @@
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="certificates" />
+      <_ContentIncludedByDefault Remove="ClientApp\src\tsconfig.app.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\src\tsconfig.server.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\src\tsconfig.spec.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\src\tslint.json" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
