@@ -1,0 +1,15 @@
+
+    <label for="issuer" class="form-control">Issuer</label>
+    <select [(ngModel)]="issuerName" name="issuer" id="issuer">
+      <option
+        *ngFor="let issuer of issuerList" [value]="issuer.value"> {{issuer.viewValue}}
+      </option>
+    </select>
+
+  <div>
+    <textarea id="assertion-textarea" [(ngModel)]="value"></textarea>
+  </div>
+  <button (click)="onSubmit()">Launch Assertions</button>
+
+
+
