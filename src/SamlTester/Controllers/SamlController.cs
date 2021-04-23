@@ -45,7 +45,6 @@ namespace SAMLTester.Controllers
         private void UpdateSamlConfigs(SamlInput input)
         {
             var samlConfiguration = _samlConfigurations.Configurations.FirstOrDefault();
-        
             var cert = samlConfiguration?.LocalIdentityProviderConfiguration.LocalCertificates;
             samlConfiguration.LocalIdentityProviderConfiguration = new LocalIdentityProviderConfiguration
                 {

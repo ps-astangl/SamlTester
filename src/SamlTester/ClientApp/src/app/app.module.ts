@@ -7,20 +7,24 @@ import { AssertionBoxComponent } from './assertion-box/assertion-box.component';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
+import {SafePipe} from './assertion-box/safe.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AssertionBoxComponent
+    AssertionBoxComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     MatSelectModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    SafePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
