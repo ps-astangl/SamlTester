@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AssertionBoxComponent } from './assertion-box/assertion-box.component';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MatSelectModule } from '@angular/material/select';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

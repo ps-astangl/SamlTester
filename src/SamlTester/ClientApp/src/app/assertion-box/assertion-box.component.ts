@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import { LaunchSetting } from "../interfaces/LaunchSetting";
+import {LaunchingService} from "../services/launching.service";
+import {DomSanitizer} from "@angular/platform-browser";
 
-
-interface Issuer {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-assertion-box',
@@ -14,25 +12,42 @@ interface Issuer {
 
 export class AssertionBoxComponent implements OnInit {
   submitted: boolean
-  value: string;
-  issuerName: string;
-  issuerList: Issuer[];
-
-  constructor() {
+  value: string
+  launch: any
+  innerHtml: string|void|any
+  constructor(private launchingService: LaunchingService, private sanitizer: DomSanitizer) {
     this.submitted = false;
     this.value = '';
-    this.issuerName = '';
-    this.issuerList = [
-      {viewValue: 'Test API', value: 'https://testapi.crisphealth.org/Screening/metadata/crisphealth.org'},
-      {viewValue: 'Localhost', value: 'https://localhost:5001/'}
-    ]
+    this.innerHtml = undefined;
   }
 
 
+
+  trySetLaunch(value : string): LaunchSetting {
+    try {
+      let parsed:LaunchSetting = JSON.parse(value);
+      this.launch = parsed;
+      return this.launch;
+    }
+    catch (e) {
+      // NOOP
+      return this.launch;
+    }
+  }
+
   onSubmit() {
+    this.trySetLaunch(this.value);
+    if (this.launch === undefined || this.launch === null) {
+      alert("Invalid configuration")
+    }
     this.submitted = true;
-    alert(this.value)
-    alert(this.issuerName)
+
+    console.log("Sending launch")
+    this.launchingService.sendLaunch(this.launch).then(x => {
+      this.innerHtml = x;
+      // this.innerHtml = this.sanitizer.sanitize(this.innerHtml)
+      console.log(this.innerHtml);
+    });
   }
 
   ngOnInit(): void {

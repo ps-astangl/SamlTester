@@ -1,15 +1,12 @@
+<div>
+  <textarea id="assertion-textarea" [(ngModel)]="value"></textarea>
+</div>
+<button (click)="onSubmit()">Launch Assertions</button>
 
-    <label for="issuer" class="form-control">Issuer</label>
-    <select [(ngModel)]="issuerName" name="issuer" id="issuer">
-      <option
-        *ngFor="let issuer of issuerList" [value]="issuer.value"> {{issuer.viewValue}}
-      </option>
-    </select>
-
-  <div>
-    <textarea id="assertion-textarea" [(ngModel)]="value"></textarea>
-  </div>
-  <button (click)="onSubmit()">Launch Assertions</button>
+<h4>Resource URL:</h4>
+<p>Showing: Application Start</p>
+<p>Trusted:</p>
+<iframe class="e2e-iframe-trusted-src" width="640" height="390" [src]="innerHtml"></iframe>
 
 
 

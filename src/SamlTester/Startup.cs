@@ -34,7 +34,10 @@ namespace SAMLTester
             services.AddTransient<IRepository, ApplicationDbContext>();
 
 
-            services.AddControllers();
+            services.AddControllers(opt =>
+            {
+                opt.EnableEndpointRouting = true;
+            });
 
             services.AddSaml(Configuration.GetSection("SAML"));
             // In production, the Angular files will be served from this directory
