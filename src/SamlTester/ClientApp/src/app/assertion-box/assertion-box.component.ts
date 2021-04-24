@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LaunchSetting} from "../interfaces/LaunchSetting";
 import {LaunchingService} from "../services/launching.service";
 import {SafePipe} from "./safe.pipe";
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-assertion-box',
