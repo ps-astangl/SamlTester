@@ -8,12 +8,14 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import {SafePipe} from './assertion-box/safe.pipe';
+import { LaunchSamlWindowComponent } from './launch-saml-window/launch-saml-window.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AssertionBoxComponent,
-    SafePipe
+    SafePipe,
+    LaunchSamlWindowComponent
   ],
   imports: [
     BrowserModule,

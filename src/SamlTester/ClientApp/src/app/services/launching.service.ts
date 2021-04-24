@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {catchError, map, tap} from 'rxjs/operators';
 
 import {LaunchSetting} from '../interfaces/LaunchSetting';
 
@@ -12,34 +12,44 @@ import {LaunchSetting} from '../interfaces/LaunchSetting';
 })
 export class LaunchingService {
   private launchUrl = '/api/launch';
-  constructor( private http: HttpClient) {}
 
-
-
+  constructor(private http: HttpClient) {
+  }
 
   /** POST: Send Launch to Server */
   sendLaunch(launchConfig: LaunchSetting) {
-    var foo = JSON.stringify(launchConfig);
     const httpOptions = {
       headers: {'Content-Type': 'application/json', 'Accept': 'application/text'},
       responseType: 'text'
     }
+    const options = {
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/text'},
+      responseType: "text",
+      observe: "body"
+    }
 
-    return this.http.post(this.launchUrl, launchConfig, {
-      headers: {'Content-Type': 'application/json', 'Accept': 'application/text'}, responseType:"text", observe:"body"
-    }).toPromise()
+    return this.http.post(this.launchUrl, launchConfig,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/text'
+        },
+        responseType: "text",
+        observe: "body"
+      }
+    ).toPromise()
       .then(resp => {
         return resp;
       })
-      .catch(error=> {
-        console.log(error)
+      .catch(error => {
+        console.error(error)
       });
   }
 
-  /** Log a HeroService message with the MessageService */
+  /** Log a message with the MessageService */
   private log(message: string) {
     console.log(`LaunchService: ${message}`)
   }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure

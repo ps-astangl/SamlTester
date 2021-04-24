@@ -3,10 +3,6 @@
 </div>
 <button (click)="onSubmit()">Launch Assertions</button>
 
-<div>
-
-</div>
-
-<div *ngIf="innerHtml">
-  {{renderHtml()}}
+<div *ngIf="launchHtml">
+  <app-launch-saml-window [samlLaunchHtml]="launchHtml"></app-launch-saml-window>
 </div>

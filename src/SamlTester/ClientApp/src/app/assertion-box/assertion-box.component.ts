@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {LaunchSetting} from "../interfaces/LaunchSetting";
 import {LaunchingService} from "../services/launching.service";
 import {SafePipe} from "./safe.pipe";
-import {SafeHtml}  from "@angular/platform-browser";
 
 @Component({
   selector: 'app-assertion-box',
@@ -13,49 +12,37 @@ import {SafeHtml}  from "@angular/platform-browser";
 export class AssertionBoxComponent implements OnInit {
   submitted: boolean
   value: string
-  launch: any
-  innerHtml: string|void|any
-  displayHtml: any
+  launchConfiguration: any
+  launchHtml: string | void | undefined
+
   constructor(private launchingService: LaunchingService, private safePipe: SafePipe) {
     this.submitted = false;
     this.value = '';
-    this.innerHtml = undefined;
-    this.displayHtml = '';
   }
-  trySetLaunch(value : string): LaunchSetting {
+
+  trySetLaunch(value: string): LaunchSetting {
     try {
-      let parsed:LaunchSetting = JSON.parse(value);
-      this.launch = parsed;
-      return this.launch;
+      let parsed: LaunchSetting = JSON.parse(value);
+      this.launchConfiguration = parsed;
+      return this.launchConfiguration;
+    } catch (e) {
+      console.error(e)
+      return this.launchConfiguration;
     }
-    catch (e) {
-      // NOOP
-      return this.launch;
-    }
-  }
-
-  renderHtml() {
-    this.displayHtml = this.getInnerHTMLValue();
-  }
-
-  getInnerHTMLValue() {
-    return this.launchingService.sendLaunch(this.launch).then(x => {
-      let input = x as string;
-      let foo = this.safePipe.transform(input, 'html');
-      this.innerHtml = foo;
-      return this.innerHtml;
-    });
   }
 
   onSubmit() {
     this.trySetLaunch(this.value);
-    if (this.launch === undefined || this.launch === null) {
+    if (this.launchConfiguration === undefined || this.launchConfiguration === null) {
       alert("Invalid configuration")
     }
-    // TODO: Pass result of
-    this.submitted = true;
-    };
 
+    this.launchingService.sendLaunch(this.launchConfiguration).then(result => {
+      console.log(result);
+      this.launchHtml = result;
+    });
+    this.submitted = true;
+  };
 
   ngOnInit(): void {
   }
