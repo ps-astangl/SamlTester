@@ -2,9 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {Observable, of} from 'rxjs';
-import {catchError, map, tap} from 'rxjs/operators';
 
-import {LaunchSetting} from '../interfaces/LaunchSetting';
+import {SamlLaunchConfiguration} from '../interfaces/LaunchSetting';
 
 
 @Injectable({
@@ -17,7 +16,7 @@ export class LaunchingService {
   }
 
   /** POST: Send Launch to Server */
-  sendLaunch(launchConfig: LaunchSetting) {
+  sendLaunch(launchConfig: SamlLaunchConfiguration) {
     const httpOptions = {
       headers: {'Content-Type': 'application/json', 'Accept': 'application/text'},
       responseType: 'text'

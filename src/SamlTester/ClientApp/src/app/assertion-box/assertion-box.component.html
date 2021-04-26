@@ -1,7 +1,8 @@
-<div>
+<div *ngIf="!submitted">
   <textarea id="assertion-textarea" [(ngModel)]="value"></textarea>
+  <button (click)="onSubmit()">Launch Assertions</button>
 </div>
-<button mat-button color="primary" (click)="onSubmit()">Launch Assertions</button>
+
 
 <div *ngIf="launchHtml">
   <app-launch-saml-window [samlLaunchHtml]="launchHtml"></app-launch-saml-window>

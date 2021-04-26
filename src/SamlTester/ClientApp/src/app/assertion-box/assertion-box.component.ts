@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {LaunchSetting} from "../interfaces/LaunchSetting";
 import {LaunchingService} from "../services/launching.service";
-import {SafePipe} from "./safe.pipe";
-import {MatButtonModule} from '@angular/material/button';
+import {SamlAttribute, SamlLaunchConfiguration} from "../interfaces/LaunchSetting";
 
 @Component({
   selector: 'app-assertion-box',
@@ -13,18 +11,18 @@ import {MatButtonModule} from '@angular/material/button';
 export class AssertionBoxComponent implements OnInit {
   submitted: boolean
   value: string
-  launchConfiguration: any
+  launchConfiguration: SamlLaunchConfiguration
   launchHtml: string | void | undefined
 
-  constructor(private launchingService: LaunchingService, private safePipe: SafePipe) {
+  constructor(private launchingService: LaunchingService) {
     this.submitted = false;
     this.value = '';
-  }
+    this.launchConfiguration = new SamlLaunchConfiguration([], '');
+  };
 
-  trySetLaunch(value: string): LaunchSetting {
+  trySetLaunch(value: string): SamlLaunchConfiguration {
     try {
-      let parsed: LaunchSetting = JSON.parse(value);
-      this.launchConfiguration = parsed;
+      this.launchConfiguration = JSON.parse(value);
       return this.launchConfiguration;
     } catch (e) {
       console.error(e)
@@ -32,26 +30,19 @@ export class AssertionBoxComponent implements OnInit {
     }
   }
 
-  // setDefaultSettings() {
-  //   {
-  //     this
-  //     "issuer": "Screening",
-  //     "attributes": [
-  //     {
-  //       "name": "User",
-  //       "value": "Test User"
-  //     },
-  //     {
-  //       "name": "Organization",
-  //       "value": "SJMC"
-  //     },
-  //     {
-  //       "name": "PatientEid",
-  //       "value": "31131416"
-  //     }
-  //   ]
-  //   }
-  // }
+  setDefaultSettings() {
+    let issuer = "Screening"
+    let samlAttributes = [
+      new SamlAttribute("User", "Test User"),
+      new SamlAttribute("Organization", "SJMC"),
+      new SamlAttribute("PatientEid", "31131416")
+    ]
+
+    console.log("Setting defaults...")
+    this.launchConfiguration = new SamlLaunchConfiguration(samlAttributes, issuer);
+    console.log(this.launchConfiguration)
+    return this.launchConfiguration;
+  }
 
   onSubmit() {
     this.trySetLaunch(this.value);
@@ -67,7 +58,11 @@ export class AssertionBoxComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.value = JSON.stringify(this.setDefaultSettings(), null, ' ');
   }
 
+  //TODO: Handle GET /Configurations
+  //TODO: Handle PUT /Configurations
+  //TODO: Handle POST /Configurations
 }
 

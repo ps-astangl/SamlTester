@@ -33,6 +33,7 @@
       <_ContentIncludedByDefault Remove="ClientApp\src\tsconfig.server.json" />
       <_ContentIncludedByDefault Remove="ClientApp\src\tsconfig.spec.json" />
       <_ContentIncludedByDefault Remove="ClientApp\src\tslint.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\e2e\tsconfig.json" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
