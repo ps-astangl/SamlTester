@@ -16,7 +16,7 @@
         "PartnerIdentityProviderConfigurations": [
           {
             "Name": "https://idp.local.com",
-            "Description": "LogOnce HMetrix Identity Provider",
+            "Description": "Generic Identity Provider",
             "WantAssertionOrResponseSigned": true,
             "WantAssertionEncrypted": true,
             "DisableAudienceRestrictionCheck" : true,

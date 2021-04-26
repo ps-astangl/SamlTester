@@ -12,7 +12,7 @@ using SAMLTester.Models;
 namespace SAMLTester.Controllers
 {
     [ApiController]
-    [Route("api/launch")]
+    [Route("api")]
     public class SamlController : ControllerBase
     {
         private ILogger<SamlController> _logger;
@@ -29,6 +29,7 @@ namespace SAMLTester.Controllers
         }
 
         [HttpPost]
+        [Route("launch")]
         public async Task SignSaml([FromBody] SamlInput input)
         {
             // UpdateSamlConfigs(input);
@@ -43,6 +44,13 @@ namespace SAMLTester.Controllers
             await identityTask;
         }
 
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult Configurations()
+        {
+            return new OkObjectResult(_samlConfigurations.Configurations);
+        }
+
         private void UpdateSamlConfigs(SamlInput input)
         {
             var samlConfiguration = _samlConfigurations.Configurations.FirstOrDefault();
@@ -50,7 +58,7 @@ namespace SAMLTester.Controllers
             samlConfiguration.LocalIdentityProviderConfiguration = new LocalIdentityProviderConfiguration
                 {
                     Name = input.Issuer,
-                    Description = "Example Identity Provider 2",
+                    Description = "Example Identity Provider 1",
                     SingleSignOnServiceUrl = input.TargetEndpoint,
                     LocalCertificates = cert
                 };
