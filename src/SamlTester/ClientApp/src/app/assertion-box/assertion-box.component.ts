@@ -32,6 +32,27 @@ export class AssertionBoxComponent implements OnInit {
     }
   }
 
+  // setDefaultSettings() {
+  //   {
+  //     this
+  //     "issuer": "Screening",
+  //     "attributes": [
+  //     {
+  //       "name": "User",
+  //       "value": "Test User"
+  //     },
+  //     {
+  //       "name": "Organization",
+  //       "value": "SJMC"
+  //     },
+  //     {
+  //       "name": "PatientEid",
+  //       "value": "31131416"
+  //     }
+  //   ]
+  //   }
+  // }
+
   onSubmit() {
     this.trySetLaunch(this.value);
     if (this.launchConfiguration === undefined || this.launchConfiguration === null) {

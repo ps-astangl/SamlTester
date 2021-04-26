@@ -1,0 +1,33 @@
+{
+  "Saml": {
+    "$schema": "https://www.componentspace.com/schemas/saml-config-schema-v1.0.json",
+    "PartnerName": "https://idp.local.com",
+    "Configurations": [
+      {
+        "LocalServiceProviderConfiguration": {
+          "Name": "https://localhost:5002/saml/AssertionConsumerService",
+          "Description": "Screening UI Service Provider",
+          "LocalCertificates": [
+            {
+              "Key": "Sp"
+            }
+          ]
+        },
+        "PartnerIdentityProviderConfigurations": [
+          {
+            "Name": "https://idp.local.com",
+            "Description": "LogOnce HMetrix Identity Provider",
+            "WantAssertionOrResponseSigned": true,
+            "WantAssertionEncrypted": true,
+            "DisableAudienceRestrictionCheck" : true,
+            "PartnerCertificates": [
+              {
+                "Key": "Sp"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

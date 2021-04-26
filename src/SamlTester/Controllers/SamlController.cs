@@ -31,6 +31,7 @@ namespace SAMLTester.Controllers
         [HttpPost]
         public async Task SignSaml([FromBody] SamlInput input)
         {
+            // UpdateSamlConfigs(input);
             List<SamlAttribute> attributes = input.Attributes.Select(
                     attr => new SamlAttribute(attr.Name, attr.NameFormat, attr.FriendlyName, attr.Value)
                 ).ToList();
